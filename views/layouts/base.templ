@@ -1,0 +1,19 @@
+package layouts
+
+templ Base() {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<title>twib</title>
+			<link rel="icon" type="image/x-icon" href="/public/favicon.ico"/>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<link rel="stylesheet" href="/public/css/base-style.css"/>
+			<script src="/public/js/htmx.min.js"></script>
+			<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+		</head>
+		<body class="antialiased">
+			{ children... }
+		</body>
+	</html>
+}
