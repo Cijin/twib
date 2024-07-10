@@ -1,0 +1,21 @@
+{
+  "name": "twib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "watch-css": "tailwindcss -i ./view/input.css -o ./public/css/output.css --watch",
+    "watch-templ": "templ generate --watch",
+    "script-dev": "webpack --mode development",
+    "watch": "npm run watch-templ & npm run build-css & npm run watch-css",
+    "build-script": "webpack --mode production",
+    "build-server": "go build -o server",
+    "build-templ": "templ generate",
+    "build-css": "tailwindcss -o ./public/css/output.css --minify"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.4"
+  }
+}
