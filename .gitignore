@@ -1,5 +1,7 @@
 .env
 bin
+main
+tmp/*
 
 *_templ.go
 *_templ.txt

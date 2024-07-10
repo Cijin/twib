@@ -1,10 +1,11 @@
 package main
 
 import (
-	"log"
+	"fmt"
 	"log/slog"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/joho/godotenv"
@@ -12,15 +13,23 @@ import (
 
 func main() {
 	if err := godotenv.Load(); err != nil {
-		log.Fatal(err)
+		slog.Info("Env file not found, using enviornment values")
 	}
+	port := os.Getenv("PORT")
+
 	router := chi.NewMux()
-
 	router.Handle("/*", public())
-	router.Get("/", handlers.Make(handlers.HandleHome))
-	router.Get("/login", handlers.Make(handlers.HandleLoginIndex))
 
-	listenAddr := os.Getenv("LISTEN_ADDR")
-	slog.Info("HTTP server started", "listenAddr", listenAddr)
-	http.ListenAndServe(listenAddr, router)
+	// Server -------------------------
+	server := http.Server{
+		Addr:              fmt.Sprintf(":%s", port),
+		Handler:           router,
+		ReadHeaderTimeout: time.Second * 10,
+		WriteTimeout:      time.Second * 20,
+		IdleTimeout:       time.Minute * 2,
+	}
+
+	// Start Server
+	slog.Info("Server listing on", "port", port)
+	slog.Error("Server terminated", "Err", server.ListenAndServe())
 }
