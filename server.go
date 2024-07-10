@@ -7,6 +7,8 @@ import (
 	"os"
 	"time"
 
+	"twib/handlers"
+
 	"github.com/go-chi/chi/v5"
 	"github.com/joho/godotenv"
 )
@@ -19,6 +21,7 @@ func main() {
 
 	router := chi.NewMux()
 	router.Handle("/*", public())
+	router.Get("/", handlers.HandleHome)
 
 	// Server -------------------------
 	server := http.Server{

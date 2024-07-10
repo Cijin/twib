@@ -4,7 +4,7 @@
   "description": "",
   "main": "",
   "scripts": {
-    "watch-css": "tailwindcss -i ./public/input.css -o ./public/css/style.css --watch",
+    "watch-css": "tailwindcss -i ./public/css/input.css -o ./public/css/style.css --watch",
     "watch-templ": "templ generate --watch",
     "watch": "npm run watch-templ & npm run watch-css",
     "build-server": "go build -o server",

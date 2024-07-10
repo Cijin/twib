@@ -1,4 +1,4 @@
-package handler
+package handlers
 
 import (
 	"log"
@@ -14,16 +14,4 @@ func renderComponent(w http.ResponseWriter, r *http.Request, component templ.Com
 	if err != nil {
 		log.Println("Error rendering component: ", err)
 	}
-}
-
-// helper, should never be used on it's own
-func renderWithLayout(w http.ResponseWriter, r *http.Request, component templ.Component) {
-	err := views.Layout(component).Render(r.Context(), w)
-	if err != nil {
-		log.Println("Error rendering page with layout: ", err)
-	}
-}
-
-func renderPage(w http.ResponseWriter, r *http.Request, component templ.Component) {
-	renderWithLayout(w, r, component)
 }
